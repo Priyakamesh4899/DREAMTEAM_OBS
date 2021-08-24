@@ -41,10 +41,7 @@ public class User {
 	@Column(name="landmark")
 	private String landmark;
 	
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	public User(String userName, String password, String email, long phoneNo, String doornumber, String street,
 			String district, int pincode, String landmark) {

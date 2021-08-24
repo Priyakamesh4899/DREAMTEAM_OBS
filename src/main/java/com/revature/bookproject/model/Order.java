@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -35,35 +37,55 @@ public class Order {
 	private Date orderDate;
 	@Column(name="status")
 	private String status;
+	private String paidStatus;
+	private Double money; 
+	@JsonIgnore
 	@OneToMany(mappedBy="order")
 	private Set<OrderDetails> orderDetails=new HashSet<>();
-	
-	//@ManyToMany
-/*	@ManyToMany
-    @JoinTable(
-        name = "Book_orders", 
-        joinColumns = { @JoinColumn(name = "orderId") }, 
-        inverseJoinColumns = { @JoinColumn(name = "bid",referencedColumnName="id") }
-    )*/
-	//@JoinColumn(name="bid",referencedColumnName="id")
-	//private List<Books> book;
+	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="userid",referencedColumnName="id")
 	private User user;
 	
-	
-	public Order() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	public Order(Date orderDate, String status, User user) {
+
+	
+	
+	public Order(Date orderDate, String status, String paidStatus, Double money, User user) {
 		super();
 		this.orderDate = orderDate;
 		this.status = status;
+		this.paidStatus = paidStatus;
+		this.money = money;
 		this.user = user;
 	}
-	
+
+
+
+	public String getPaidStatus() {
+		return paidStatus;
+	}
+
+
+
+	public void setPaidStatus(String paidStatus) {
+		this.paidStatus = paidStatus;
+	}
+
+
+
+	public Double getMoney() {
+		return money;
+	}
+
+
+
+	public void setMoney(Double money) {
+		this.money = money;
+	}
+
+
+
 	public int getOrderId() {
 		return orderId;
 	}

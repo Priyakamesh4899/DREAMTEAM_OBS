@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -45,14 +47,11 @@ public class Books {
 	private int readingAgeTo;
 	@Column(name="stock")
 	private long stock;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy="book",cascade = {CascadeType.ALL})
 	private Set<OrderDetails> orderDetails=new HashSet<>();
 	
-	public Books() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
     
 	public Books(String bookName, String authorName, String description, int bookPages, double bookPrice, String genre,
 			int readingAgeFrom, int readingAgeTo, long stock, Set<OrderDetails> orderDetails) {

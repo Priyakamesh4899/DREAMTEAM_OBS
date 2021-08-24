@@ -5,6 +5,6 @@ import org.springframework.stereotype.Component;
 
 import com.revature.bookproject.model.Employee;
 @Component
-public interface EmpJpaRepository extends JpaRepository<Employee,Integer>{
+public interface EmployeeJpaRepository extends JpaRepository<Employee,Integer>{
       
 }

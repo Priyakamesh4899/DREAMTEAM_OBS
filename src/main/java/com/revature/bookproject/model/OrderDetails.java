@@ -1,5 +1,4 @@
 package com.revature.bookproject.model;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,12 +26,12 @@ public class OrderDetails {
 	@Id
 	@GeneratedValue
 	private int oid;
-	
+	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="book_id")
 	private Books book;
 	
-	
+	@JsonIgnore
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="order_id")
 	private Order order;
@@ -38,11 +39,7 @@ public class OrderDetails {
 	private long quantity;
 	private double subTotal;
 	
-	
-	public OrderDetails() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+
 	public OrderDetails(Books book, Order order, long quantity, double subTotal) {
 		super();
 		this.book = book;

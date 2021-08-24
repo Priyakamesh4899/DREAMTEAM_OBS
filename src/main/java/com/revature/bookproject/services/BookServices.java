@@ -50,11 +50,25 @@ public class BookServices {
 	}
 
 	
+	
 	public List<Books> displayBooksByAuthorName(String author)
 	{
 	   List<Books> list=  bookJpaRepository.findAllByAuthorName(author);  
 	   return list;
 	}
+	
+	 
+	public List<Books> displayBooksByRange(int range){
+		List<Books> list=  bookJpaRepository.findAllByRange(range);  
+		return list;
+	}
+	
+	public List<Books> displayBooksByGenre(String genre)
+	{
+	   List<Books> list=  bookJpaRepository.findAllByGenre(genre);  
+	   return list;
+	}
+	
 	
 	public Books displayBookById(Long id)
 	{
